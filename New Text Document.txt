@@ -1,0 +1,260 @@
+INSTITUTE
+1.	Institute
+•	Name
+•	Email
+•	Tel Number
+•	Department (created from leadership departments, linked to it)
+•	Text
+•	File
+2.	Message
+•	Announcement
+•	Title
+•	Text
+•	Additional Data
+•	Image
+•	News
+•	Title
+•	Text
+•	Additional Data
+•	Image (if there are several image files)
+•	Meeting
+•	Title
+•	Text
+•	Image (if there are several image files)
+•	Date
+•	File
+•	Contact Document
+•	Public Events
+•	Title
+•	Text
+•	Additional Data
+•	Image
+•	Document
+3.	Activity
+•	News
+•	Title
+•	Text
+•	Additional Data
+•	Image
+•	Electronic Fund
+•	Document Number
+•	Document Type
+•	Year of Document Confirmation
+•	Conditional Certificate
+•	Document File
+4.	Classifier
+•	Product 1
+•	ID
+•	Name
+•	Linked to Resource Model ID
+•	Product 2
+•	ID
+•	Name
+•	Linked to Resource Model ID
+•	Linked to Product 1 from above
+•	Product Internal Connection
+•	ID
+•	Name
+•	Linked to Resource Model ID
+•	Linked to Product 2 from above
+•	Resource
+•	ID (linked to the above)
+•	Title
+•	Code
+•	Measurement
+•	Average Tax
+•	Average Price with Tax
+•	Average Product Cost
+•	Average Product Price with Tax
+•	Average Overall Price
+•	File
+•	Number of Views
+•	Linked to the Offeror
+ADMINISTRATIVE DOCUMENTS
+1.	Regulatory Document
+•	Title
+•	Code
+•	Text
+•	Image File
+•	File
+2.	Standard
+•	Title
+•	Code
+•	Text
+•	Image File
+•	File
+3.	User
+•	Comment
+•	Name
+•	Additional Data
+•	Like
+•	Dislike
+INSTITUTE
+1.	Leadership
+•	Position
+•	Full Name
+•	Photo
+•	Reception Days
+•	Email
+2.	Structural Department
+•	Name
+•	Full Name
+•	Tel Number
+•	Email
+•	Photo
+3.	Vacancy
+•	Logo
+•	Name
+•	Product Code
+•	Certificate File
+•	Price
+•	Tel Number
+•	Last Price
+Python model:
+class Contact:
+    def __init__(self, name, email, tel_number):
+        self.name = name
+        self.email = email
+        self.tel_number = tel_number
+
+
+class Message:
+    def __init__(self, title, text, additional_data, image=None):
+        self.title = title
+        self.text = text
+        self.additional_data = additional_data
+        self.image = image
+
+
+class Announcement(Message):
+    def __init__(self, title, text, additional_data, image=None):
+        super().__init__(title, text, additional_data, image)
+
+
+class News(Message):
+    def __init__(self, title, text, additional_data, image=None):
+        super().__init__(title, text, additional_data, image)
+
+
+class Meeting(Message):
+    def __init__(self, title, text, image=None, date=None, file=None, contact=None):
+        super().__init__(title, text, additional_data=None, image=image)
+        self.date = date
+        self.file = file
+        self.contact = contact
+
+
+class PublicEvents(Message):
+    def __init__(self, title, text, additional_data, image=None, document=None):
+        super().__init__(title, text, additional_data, image)
+        self.document = document
+
+
+class Partnership(Message):
+    def __init__(self, title, text, additional_data, image=None, document=None):
+        super().__init__(title, text, additional_data, image)
+        self.document = document
+
+
+class Seminar(Message):
+    def __init__(self, title, text, additional_data, image=None, document=None):
+        super().__init__(title, text, additional_data, image)
+        self.document = document
+
+
+class Activity:
+    def __init__(self, title, text, additional_data, image=None):
+        self.title = title
+        self.text = text
+        self.additional_data = additional_data
+        self.image = image
+
+
+class NewsActivity(Activity):
+    def __init__(self, title, text, additional_data, image=None):
+        super().__init__(title, text, additional_data, image)
+
+
+class ElectronicFund(Activity):
+    def __init__(self, document_number, document_type, year_of_confirmation, conditional_certificate, document_file):
+        self.document_number = document_number
+        self.document_type = document_type
+        self.year_of_confirmation = year_of_confirmation
+        self.conditional_certificate = conditional_certificate
+        self.document_file = document_file
+
+
+class Product:
+    def __init__(self, product_id, name, linked_resource_model_id):
+        self.product_id = product_id
+        self.name = name
+        self.linked_resource_model_id = linked_resource_model_id
+
+
+class Resource:
+    def __init__(self, resource_id, title, code, measurement, average_tax, average_price_with_tax,
+                 average_product_cost, average_product_price_with_tax, average_overall_price, file, num_views, offeror):
+        self.resource_id = resource_id
+        self.title = title
+        self.code = code
+        self.measurement = measurement
+        self.average_tax = average_tax
+        self.average_price_with_tax = average_price_with_tax
+        self.average_product_cost = average_product_cost
+        self.average_product_price_with_tax = average_product_price_with_tax
+        self.average_overall_price = average_overall_price
+        self.file = file
+        self.num_views = num_views
+        self.offeror = offeror
+
+
+class RegulatoryDocument:
+    def __init__(self, title, code, text, image=None, file=None):
+        self.title = title
+        self.code = code
+        self.text = text
+        self.image = image
+        self.file = file
+
+
+class Standard(RegulatoryDocument):
+    def __init__(self, title, code, text, image=None, file=None):
+        super().__init__(title, code, text, image, file)
+
+
+class User:
+    def __init__(self, comment, name, additional_data, like, dislike):
+        self.comment = comment
+        self.name = name
+        self.additional_data = additional_data
+        self.like = like
+        self.dislike = dislike
+
+
+class Leadership:
+    def __init__(self, position, full_name, photo, reception_days, email):
+        self.position = position
+        self.full_name = full_name
+        self.photo = photo
+        self.reception_days = reception_days
+        self.email = email
+
+
+class StructuralDepartment:
+    def __init__(self, name, full_name, tel_number, email, photo):
+        self.name = name
+        self.full_name = full_name
+        self.tel_number = tel_number
+        self.email = email
+        self.photo = photo
+
+
+class Vacancy:
+    def __init__(self, logo, name, product_code, certificate_file, price, tel_number, last_price):
+        self.logo = logo
+        self.name = name
+        self.product_code = product_code
+        self.certificate_file = certificate_file
+        self.price = price
+        self.tel_number = tel_number
+        self.last_price = last_price
